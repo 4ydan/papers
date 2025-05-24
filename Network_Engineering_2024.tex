@@ -1,0 +1,350 @@
+\documentclass[12pt]{article}
+\usepackage{fncychap}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[a4paper, top=1.5cm, bottom=2.0cm, left=1.5cm, right=2.0cm, marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{setspace}
+
+\onehalfspacing % Default is 1.5 spacing, but we will set this below
+\setstretch{1.15}  % Adjust line spacing to 1.15
+\pagestyle{fancy}
+\fancyhf{} % Clear all header and footer fields
+\fancyhead[LE,RO]{\thesection} % Left on even pages, right on odd pages
+\fancyhead[CE,CO]{\leftmark}   % Chapter title in the center
+\fancyfoot[C]{Seite \thepage~von~\pageref{LastPage}}
+
+
+\title{Künstliche Intelligenz im Kundenservice? Nein Danke.}
+\author{Aydan Namdar Ghazani, Michael Rathmayr, Moritz Schalk, Johannes Zottele}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Der Einsatz von Künstlicher Intelligenz (KI) im Kundenservice hat das Potenzial, die Interaktionen zwischen Unternehmen und Kunden durch Effizienz, Personalisierung und Kostensenkung zu revolutionieren. Insbesondere Large Language Models (LLMs) wie GPT eröffnen neue Möglichkeiten für automatisierte, skalierbare Kundenbetreuung. Dieses Paper untersucht kritisch die Schwachstellen und Herausforderungen, die mit der Nutzung von KI im Kundenservice einhergehen. Dazu gehören technische Hürden, ethische Fragestellungen, Datenschutzprobleme sowie die Akzeptanz und Wahrnehmung durch die Kunden.
+
+Auf Basis einer umfassenden Literaturrecherche werden Lösungsansätze zur Verbesserung von Interaktionen, zur Minimierung von Bias und Halluzinationen sowie zur Förderung von Vertrauen und Transparenz diskutiert. Hybride Ansätze, bei denen KI-Systeme mit menschlichen Agenten kombiniert werden, sowie ethisch verantwortungsvolle und nachhaltige Implementierungsstrategien stehen im Fokus der Untersuchung.
+
+Das Paper schließt mit der Empfehlung, den Einsatz von KI im Kundenservice differenziert zu betrachten, um sowohl technologische Potenziale auszuschöpfen als auch den Erwartungen der Kunden gerecht zu werden, und gleichzeitig ökologische und gesellschaftliche Aspekte nicht außer Acht zu lassen.
+\end{abstract}
+
+% PowerPoint
+% https://docs.google.com/presentation/d/1_GGpeDxQEkuY-zjgAtfmzu0DaVq33G_0UFy-HNbWeFA/edit#slide=id.g31428b82128_1_10
+
+% 1. Introduction zum Thema  -> Adi
+% 2. Forschungsfragen -> von PP kopieren
+% 3. LLMs generell erklären (neuronale Netzwerke, usw.) -> Michael
+% 4. Wie wird KI im Kundenservice verwendet -> Johannes
+% 5. Schwachstellen (im Bezug auf Kundeninteraktion) -> Moritz
+% 6. Mögliche Lösungen/Lösungsansatze -> Michael
+% 7. Conclusion -> Adi
+
+\section{Einführung}
+
+Die Künstliche Intelligenz (KI) hat in den letzten Jahren einen festen Platz in der wissenschaftlichen Diskussion und in der unternehmerischen Praxis eingenommen.
+Als Schlüsseltechnologie wird ihr das Potenzial zugesprochen, grundlegende Prozesse zu optimieren, neue Dienstleistungen zu entwickeln und durch personalisierte Interaktionen engere Beziehungen zwischen Unternehmen und Kunden zu schaffen.
+Vor allem im Dienstleistungsmanagement wird KI als Innovationstreiber verstanden, der dazu beiträgt, kundenorientierte Prozesse effizienter zu gestalten und gleichzeitig die Profitabilität zu steigern.
+Gleichzeitig gibt es jedoch auch kritische Stimmen, die sich mit den Herausforderungen und möglichen Risiken dieser Entwicklung auseinandersetzen.
+
+Im Kontext des Kundenservices, einem der zentralen Einsatzfelder der KI, zeigt sich diese Ambivalenz besonders deutlich.
+KI-basierte Lösungen, wie Chatbots oder Sprachassistenten, versprechen eine rund um die Uhr verfügbare Kundenbetreuung und die Möglichkeit, Kundenanfragen schnell und effizient zu bearbeiten.
+Unternehmen sehen darin eine Chance, Kundeninteraktionen reibungslos und personalisiert zu gestalten, Erwartungen zu übertreffen und ein positives Erlebnis zu gewährleisten.
+Generative KI-Systeme können diese Entwicklungen sogar auf die nächste Ebene heben, indem sie mit Geschwindigkeit und Präzision arbeiten und sowohl Selbstbedienungsoptionen als auch menschliche Agenten unterstützen.
+Diese Technologien versprechen, den hohen finanziellen Aufwand vieler Unternehmen für den Kundenservice zu reduzieren und gleichzeitig den steigenden Ansprüchen der Kunden gerecht zu werden, die insbesondere seit der COVID-19-Pandemie zugenommen haben.
+
+Auf der anderen Seite bleibt die Frage offen, inwiefern diese Technologien tatsächlich in der Lage sind, die Bedürfnisse der Kunden zu erfüllen und deren Vertrauen zu gewinnen.
+Studien zeigen, dass Vertrauen und Akzeptanz entscheidende Faktoren für den Erfolg von KI-basierten Dienstleistungen sind, diese jedoch häufig nicht ausreichend berücksichtigt werden \cite{rathje_kunstliche_2021}.
+Die fragmentierte Nutzung von Technologien wie interaktiven Sprachsystemen (IVR), Chatbots und Agent-Assist-Tools zeigt, dass die Integration oft nicht nahtlos erfolgt und potenziell frustrierende Erlebnisse schaffen kann.
+Darüber hinaus werfen datenschutzrechtliche Bedenken, wie die Nutzung personenbezogener Daten für das Training von Modellen, sowie ethische Fragen über Bias und Fairness immer wieder Fragen nach der verantwortungsvollen Implementierung auf.
+
+Dieses Paper widmet sich der Frage, ob und inwieweit der Einsatz von KI im Kundenservice die Erwartungen von Unternehmen und Kunden erfüllen kann.
+Dabei liegt der Fokus auf der kritischen Betrachtung von Schwachstellen, die durch den Einsatz von KI entstehen, sowie auf der Diskussion möglicher Lösungsansätze.
+Aufbauend auf den bisherigen wissenschaftlichen Erkenntnissen zur Akzeptanz und Nutzung von KI-basierten Dienstleistungen wird untersucht, welche Faktoren für den Erfolg oder Misserfolg dieser Technologien im Kundenservice entscheidend sind.
+
+Der erste Teil des Papers bietet eine grundlegende Einführung in die Thematik und präsentiert die zugrunde liegenden Forschungsfragen.
+Anschließend wird ein Überblick über die Funktionsweise von KI und insbesondere von großen Sprachmodellen (LLMs) gegeben.
+Darauf aufbauend wird der Einsatz von KI im Kundenservice analysiert, wobei ein besonderes Augenmerk auf die Schwachstellen in der Kundeninteraktion gelegt wird.
+Abschließend werden mögliche Lösungsansätze diskutiert und eine kritische Schlussfolgerung gezogen.
+
+Vor dem Hintergrund der zunehmenden Digitalisierung und Automatisierung stellt dieses Paper die These auf, dass KI im Kundenservice nicht immer die optimale Lösung ist.
+Stattdessen plädiert es für einen differenzierten Umgang mit der Technologie, der sowohl die Potenziale als auch die Grenzen von KI berücksichtigt.
+Ziel ist es, Unternehmen und Wissenschaftler gleichermaßen dazu anzuregen, die Rolle von KI im Kundenservice kritisch zu hinterfragen und neue Ansätze für eine kundenorientierte Digitalisierung zu entwickeln.
+
+\section{Forschungsfragen \& Methodik}
+
+Im Zuge dieses Papers wollen wir vier Forschungsfragen beantworten:
+\begin{itemize}
+    \item Unter welchen Voraussetzungen könnten LLMs sinnvoll im Kundenservice eingesetzt werden?
+    \item Gibt es einen Unterschied hinsichtlich der Einsetzbarkeit von LLMs im Kundenservice?
+    \item Welche Folgen kann der Model Collapse für LLMs im Kundenservice haben?
+    \item Inwiefern spielen Umweltaspekte eine Rolle im Zusammenhang mit LLMs im Kundenservice?
+\end{itemize}
+
+\section{Technische Funktionsweise von LLMs}
+
+Machine Learning (ML) ist ein Teilgebiet der künstlichen Intelligenz (KI), das sich mit der Entwicklung von Algorithmen und Modellen beschäftigt, die aus Daten lernen können. Eine spezielle Unterkategorie ist Generative AI, die darauf abzielt, neue Inhalte zu erzeugen, wie Texte, Bilder oder Audio. Innerhalb dieses Bereichs spielen Large Language Models (LLMs) wie GPT (Generative Pre-trained Transformer) eine zentrale Rolle. Im Folgenden wird die Entwicklung und Funktionsweise solcher Modelle detailliert erläutert.
+
+\subsection{Grundlagen}
+
+Machine Learning lässt sich grob in drei Kategorien einteilen:
+
+\begin{itemize}
+    \item \textbf{Supervised Learning}: Modelle lernen anhand gelabelter Daten, z.B. Klassifikationsaufgaben wie Spam-Filterung.
+    \item \textbf{Unsupervised Learning}: Modelle erkennen Muster in unstrukturierten Daten, z.B. Clustering oder Dimensionsreduktion.
+    \item \textbf{Reinforcement Learning}: Modelle lernen durch Interaktionen mit einer Umgebung und erhalten Feedback in Form von Belohnungen oder Strafen.
+\end{itemize}
+
+Generative AI nutzt meist Ansätze aus Unsupervised oder Semi-Supervised Learning, um kreative Inhalte zu generieren. Dabei wird ein Modell trainiert, um die zugrunde liegende Datenverteilung zu verstehen und neue Beispiele aus dieser Verteilung zu erzeugen. LLMs, als eine spezielle Form generativer KI, fokussieren sich auf natürliche Sprache und sind darauf ausgelegt, Textaufgaben durch Pretraining und Finetuning effizient zu lösen. Die Entwicklung von LLMs basiert auf mehreren Schlüsseltechnologien, die im Folgenden erläutert werden:\\
+
+\subsection{Word Embedding}
+
+Word Embeddings wie Word2Vec, GloVe oder FastText stellen Wörter als dichte Vektoren in einem kontinuierlichen Raum dar. Diese Vektoren erfassen semantische und syntaktische Beziehungen zwischen Wörtern. Zum Beispiel zeigt die Berechnung \emph{"König - Mann + Frau = Königin"}, wie Embeddings semantische Transformationen ermöglichen \cite{mikolov2013}. Solche Darstellungen sind wesentlich effizienter als klassische One-Hot-Encodings.
+
+
+\subsection{Language Modeling}
+
+Language Models werden darauf trainiert, die Wahrscheinlichkeit einer Wortfolge zu schätzen. Klassische Ansätze wie n-Gramm-Modelle wurden durch neuronale Modelle wie LSTMs (Long Short-Term Memory) und GRUs (Gated Recurrent Units) abgelöst, da diese besser mit langen Abhängigkeiten umgehen können. Ziel ist es, den Kontext einer Wortfolge zu erfassen, um sinnvolle Vorhersagen für das nächste Wort treffen zu können \cite{brown2020}.
+
+\subsection{Deep Neural Networks}
+
+DNNs sind mehrschichtige neuronale Netze, die durch Backpropagation trainiert werden. Diese Netze bestehen aus einer Eingabeschicht, mehreren versteckten Schichten und einer Ausgabeschicht. In der Sprachverarbeitung ermöglichen DNNs die Modellierung komplexer Beziehungen zwischen Wörtern, Sätzen und Kontexten. Die Fähigkeit, hochdimensionale Daten wie Text zu verarbeiten, bildet die Grundlage für moderne Sprachmodelle \cite{vaswani2017}.
+
+\subsection{Transformer Architektur}
+
+Die Transformer-Architektur, eingeführt von Vaswani et al. (2017), war ein entscheidender Durchbruch in der Sprachverarbeitung \cite{vaswani2017}. Der zentrale Mechanismus ist die Selbstaufmerksamkeit (Self-Attention), die es ermöglicht, den Kontext eines Wortes in Bezug auf alle anderen Wörter in einem Satz effizient zu berechnen. 
+
+Die Architektur besteht aus mehreren \emph{Encoder-Decoder-Schichten}, wobei beispielsweise GPT ausschließlich den Decoder-Teil verwendet. Der Vorteil der Transformer liegt in ihrer parallelen Verarbeitung, was im Vergleich zu sequentiellen Modellen wie RNNs und LSTMs zu erheblichen Geschwindigkeitssteigerungen führt.
+
+\subsection{Training}
+
+Das Training eines LLM wie GPT erfolgt in zwei Hauptphasen:
+\begin{itemize}
+    \item \textbf{Pretraining}: Das Modell wird mit der Aufgabe trainiert, das nächste Token in einer Sequenz vorherzusagen. Dazu wird ein umfangreicher und vielfältiger Textkorpus verwendet. Das Pretraining vermittelt dem Modell ein breites Sprachverständnis \cite{brown2020}.
+    \item \textbf{Finetuning}: Hier wird das Modell auf spezifische Anwendungsfälle angepasst, oft durch Reinforcement Learning with Human Feedback (RLHF). Menschliche Bewertungen helfen dabei, die Qualität und Relevanz der generierten Texte zu optimieren.
+\end{itemize}
+
+\subsection{Funktionsweise eines LLMs wie ChatGPT anhand eines Beispiels}
+
+Ein LLM wie ChatGPT funktioniert durch eine Kombination aus Tokenisierung, Embedding, Verarbeitung durch Transformer-Schichten und Textgenerierung. Der Ablauf ist wie folgt:
+
+\begin{enumerate}
+    \item Die Eingabe \emph{"Was ist der Sinn des Lebens?"} wird in kleinere Einheiten, sogenannte Tokens, zerlegt. Diese können Wörter, Subwörter oder Zeichen sein. Tokenisierung ermöglicht es, auch unbekannte Wörter effizient darzustellen.\\
+    \item Jedes Token wird in einen numerischen Vektor umgewandelt, der seine Bedeutung in einem kontinuierlichen Raum repräsentiert. Diese Vektoren dienen als Eingabe für die Transformer-Schichten.\\
+    \item Die Selbstaufmerksamkeitsmechanismen in den Transformer-Schichten berechnen die Beziehungen zwischen Tokens. Dadurch kann das Modell den Kontext eines Wortes sowohl in kurzen als auch langen Texten berücksichtigen.\\
+    \item Am Ausgang des Modells wird für jedes mögliche nächste Token eine Wahrscheinlichkeitsverteilung berechnet. Mithilfe von Sampling-Methoden wie Greedy Search, Beam Search oder Temperatursteuerung wird das nächste Token ausgewählt. Der Prozess wird iterativ wiederholt, bis die Antwort vollständig ist \cite{brown2020}. Das Modell generiert eine Antwort wie \emph{"Der Sinn des Lebens ist subjektiv und kann unterschiedlich interpretiert werden."}.\\
+\end{enumerate}
+
+\begin{center}
+    \includegraphics[scale=0.6]{Slide1-1024x576.jpg}
+\end{center}
+
+\begin{center}
+Ein Beispiel, wie GPT 3 von OpenAI funktioniert \cite{gpt3}. 
+\end{center}
+
+\subsection{Herausforderungen und Grenzen}
+Obwohl LLMs beeindruckende Leistungen zeigen, gibt es Herausforderungen:
+\begin{itemize}
+    \item \textbf{Rechenressourcen}: Das Training und die Nutzung großer Modelle erfordert enorme Rechenleistung \cite{brown2020}.
+    \item \textbf{Bias}: Modelle können Vorurteile aus den Trainingsdaten übernehmen.
+    \item \textbf{Erklärbarkeit}: Die internen Prozesse eines LLMs sind oft schwer zu interpretieren.
+    \item \textbf{Halluzinationen}: Modelle können plausible, aber falsche Informationen generieren.
+\end{itemize}
+
+\section{KI im Kundenservice}
+
+KI und Chatbots sind aus dem Bereich des Kundendienstes nicht mehr wegzudenken und bieten effiziente, skalierbare und kostengünstige Lösungen für eine breite Palette von Anwendungen. Diese Technologien nutzen in erster Linie die Verarbeitung natürlicher Sprache (NLP), um Kundenanfragen zu interpretieren und auf eine menschenähnliche Weise zu beantworten. Sie werden in verschiedenen Bereichen eingesetzt, darunter E-Commerce, soziale Medien, Gesundheitswesen, Telekommunikation, Bankwesen usw., wodurch der Kundensupport zugänglicher und konsistenter wird \cite{liu_towards_2020, hu_touch_2018, oraby_how_2017, mashaabi_natural_2022}.\\
+
+KI-gestützte Chatbots und Frage-Antwort-Systeme werden häufig zur Bearbeitung allgemeiner Kundenanfragen eingesetzt. Diese Systeme nutzen konversationelle KI, um flüssige, mehrstufige Interaktionen mit Nutzer*innen aufrechtzuerhalten und genaue und schnelle Antworten auf allgemeine Fragen zu gewährleisten. Diese Funktionalität ist vor allem beim 24/7-Kundensupport von Vorteil, da sie die Wartezeiten verkürzt und die Nutzerzufriedenheit erhöht \cite{liu_towards_2020, parmar_multiclass_2018, sheehan_customer_2020}.\\
+
+Neben textbasierten Systemen gibt es auch Telefonassistenten, die den Vorteil bieten, eine für Menschen natürliche und intuitive Form der Kommunikation zu unterstützen, indem sie Sprache statt Text verwenden. Dadurch sind sie besonders für Situationen geeignet, in denen Hands-free-Bedienung oder barrierefreie Interaktion gefragt sind. Allerdings können sie bei Akzentproblemen oder in lauten Umgebungen an ihre Grenzen stoßen \cite{roslan_rise_2023}. \\
+
+Im E-Commerce werden KI-Chatbots für Produktempfehlungen, die Beantwortung von Kundenfragen und die Rationalisierung von Lieferkettenabfragen eingesetzt. Durch die Analyse von Kundenverhalten und -feedback verbessern diese Systeme Marketingstrategien und die Kundenbindung. Verteilte Chatbot-Systeme werten beispielsweise Nutzeranfragen aus und liefern Informationen zu Bestellungen oder Empfehlungen, die auf individuelle Vorlieben zugeschnitten sind \cite{lin_sentiment_2020, angelov_e-commerce_2019}.\\
+
+Social-Media-Plattformen wie Twitter, WhatsApp und Instagram sind wichtige Umgebungen für NLP-gesteuerten Kundenservice. Chatbots werden eingesetzt, um Probleme zu lösen, die Stimmung zu analysieren und direkt mit Kunden in Kontakt zu treten. Diese Plattformen ermöglichen es Unternehmen, Kunden schnell und effizient zu erreichen und gleichzeitig eine konsistente Markensprache über verschiedene Kanäle hinweg beizubehalten \cite{oraby_how_2017, liu_towards_2020, panda_conceptual_2024}.\\
+
+Im Gesundheitswesen unterstützen Chatbots PatientInnen, indem sie Antworten auf medizinische Anfragen geben, Terminvereinbarungen ermöglichen und Erinnerungen an die Einnahme von Medikamenten anbieten. Systeme wie der HHH-Chatbot nutzen Wissensgraphen und Textähnlichkeitsmodelle zur Beantwortung komplexer medizinischer Fragen und machen Gesundheitsinformationen auch für nicht fachkundige NutzerInnen zugänglich \cite{bao_hhh_2020}. Studien zeigen, dass personalisierte Chatbots, die über aktuelle Gesundheitsinformationen verfügen, beispielsweise durch Tragen einer Sportuhr, bei einer gesunden Gewichtsabnahme effektiv unterstützen können \cite{chew_use_2022, huang_chatbot-supported_2018, chew_potential_2021}.\\
+
+KI-Chatbots im Bankwesen unterstützen KundInnen bei der Beantwortung von Anfragen zu Konten, Transaktionen und Krediten. Diese Systeme imitieren menschenähnliche Interaktionen, um komplexe Finanzinformationen zu vereinfachen und Bankdienstleistungen zugänglicher zu machen, insbesondere für weniger technisch versierte Nutzer*innen \cite{eneizan_artificial_2022, alt_banking_2021, nguyen_determinants_2021}.\\
+
+
+\subsection{Aufbau einer KI im Kundenservice}
+
+Die von Chaturvedi und Verma (2023) entworfene KI-gesteuerte Kundenservice-Pyramide stellt einen strukturierten Rahmen für die Implementierung von KI im Kundenservice dar. Abbildung \ref{fig:customer-service-pyramid} zeigt die vier hierarchischen Ebenen, die sich jeweils auf kritische Aspekte der effektiven Integration von KI in Kundeninteraktionen konzentrieren \cite{chaturvedi_opportunities_2023}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{fig/528789_1_En_3_Fig2.png}
+    \caption{KI-gesteuerte Kundenpyramide von Chaturvedi und Verma (2023) \cite{chaturvedi_opportunities_2023}.}
+    \label{fig:customer-service-pyramid}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{AI-Enabler (Grundlage)}: Diese Basisebene umfasst die grundlegenden KI-Fähigkeiten, die das System antreiben. Sie bilden die technische Infrastruktur, um komplexe Aufgaben zu bewältigen und anspruchsvolle Ergebnisse im Kundenservice zu erzielen.
+    \item \textbf{Kundenschnittstelle (Zweite Ebene)}: Diese Ebene fokussiert sich auf die Kanäle, über die Kunden mit KI-Systemen interagieren. Ziel ist es, eine nahtlose und angenehme Erfahrung zu schaffen, die die Kundenbindung und Interaktion verbessert. Die Schnittstellen sind essenziell, um die technologischen Möglichkeiten der KI in praktischen Anwendungen erlebbar zu machen.
+    \item \textbf{KI-Angebote (Dritte Ebene)}: In dieser Ebene werden die konkreten Vorteile, die Kunden durch KI erhalten, hervorgehoben. Dazu zählen personalisierte Erlebnisse, Komfort, Sicherheit sowie Geschwindigkeit und Genauigkeit in der Servicebereitstellung. Diese Angebote wirken sich direkt auf die Zufriedenheit der Kunden aus und stärken das Vertrauen und die Loyalität.
+    \item \textbf{KI-Ziele (Spitze der Pyramide)}: Die Spitze der Pyramide stellt die übergeordneten Ziele von KI-gesteuertem Kundenservice dar. Dazu gehören die Verbesserung der Kundenbindung, die Schaffung positiver Kundenerlebnisse, eine höhere Zufriedenheit, die Förderung von Loyalität sowie die Bereitstellung kosteneffizienter Service-Exzellenz. Diese Ebene bündelt die strategischen Ergebnisse, die Unternehmen durch den Einsatz von KI erreichen wollen.
+\end{itemize}
+
+Die Pyramide dient nicht nur als theoretisches Modell, sondern auch als praktischer Leitfaden für Unternehmen, ihre KI-Strategien mit kundenzentrierten Zielen in Einklang zu bringen. Sie unterstreicht die Bedeutung eines systematischen Ansatzes – von der Schaffung robuster Grundlagen bis hin zur Erreichung strategischer Ziele – und soll sicherstellen, dass die KI-Technologien den Mehrwert für Kunden steigern und gleichzeitig die betriebliche Effizienz und Skalierbarkeit fördern.
+
+\subsection{Kundenwahrnehmung}
+
+Ein zentraler Aspekt von KI im Kundenservice ist die Wahrnehmung durch Kund*innen. Pütz et al. (2021) identifizierten die drei wichtigsten Determinanten der Kundenwahrnehmung: \textit{wahrgenommene Nützlichkeit}, \textit{wahrgenommene Benutzerfreundlichkeit} und \textit{Nutzungsabsicht}. Diese Faktoren stehen in enger Beziehung: Eine hohe wahrgenommene Nützlichkeit und Benutzerfreundlichkeit führen zu einer gesteigerten Nutzungsabsicht, die wiederum die tatsächliche Nutzung der Technologie erhöht \cite{putz_akzeptanz_2021}.
+
+Grotenhermen et al. (2021) untersuchten die Akzeptanz und Wahrnehmung von Chatbots im Banken- und Versicherungssektor. Die Ergebnisse zeigen, dass die Bereitstellung einer Chatfunktion bei Schadensmeldungen an Versicherer als besonders nützlich wahrgenommen wird, unabhängig davon, ob ein menschlicher Berater oder ein Chatbot eingesetzt wird. Menschliche Berater*innen werden jedoch als vertrauenswürdiger und nützlicher eingeschätzt. Bei Aufgaben wie Kreditkartentransaktionen wird der Vorteil menschlicher Berater gegenüber Chatbots hingegen als weniger signifikant wahrgenommen  \cite{grotenhermen_wahrnehmungen_2021}.
+
+Datenschutzbedenken spielen eine zentrale Rolle bei der Wahrnehmung von KI-Systemen. Kund*innen empfinden gegenüber Chatbots größere Vorbehalte, insbesondere in sensiblen Kontexten, da Algorithmen oft als undurchschaubar wahrgenommen werden. Dieses Misstrauen kann das Nutzen-Risiko-Verhältnis negativ beeinflussen. Menschliche Berater*innen genießen dagegen mehr Vertrauen, was auf ihre Transparenz und Empathie zurückgeführt werden kann \cite{kelly_what_2023, song_will_2022}.
+
+Die Erkenntnisse werden durch die MABA-HABA-Theorie (Machines Are Better At – Humans Are Better At) untermauert. Diese Theorie nimmt an, dass Maschinen für sozial-interaktive Aufgaben weniger geeignet sind, da sie häufig als unpersönlich und entmenschlicht wahrgenommen werden \cite{grotenhermen_wahrnehmungen_2021}. Daher werden Dienstleistungen, die ein hohes Maß an Interaktion und Vertrauen erfordern, bevorzugt von menschlichen Berater*innen erbracht.
+
+Zusätzlich zeigen systematische Untersuchungen, dass Vertrauen ein entscheidender Faktor für die Akzeptanz von KI ist. Wahrgenommene Nützlichkeit bleibt der stärkste Prädiktor, während Benutzerfreundlichkeit, insbesondere bei technologisch versierten Nutzer*innen, eine geringere Rolle spielt. Externe Faktoren wie soziale Normen, kulturelle Unterschiede und individuelle Technologieerfahrungen beeinflussen die Wahrnehmung ebenfalls stark \cite{kelly_what_2023}.
+
+Aus praktischer Sicht sollten Unternehmen datensensible Aufgaben wie Kreditkartentransaktionen nur mit Bedacht automatisieren, da Vorbehalte hier besonders ausgeprägt sind. Standardisierte und weniger interaktive Anliegen, wie Schadensmeldungen, können hingegen effektiv durch Chatbots abgewickelt werden, was menschliche Berater*innen entlastet. Eine transparente Kommunikation über Datenschutzmaßnahmen und die Vorteile automatisierter Systeme ist essenziell, um Vertrauen und Akzeptanz bei Kund*innen zu fördern \cite{grotenhermen_wahrnehmungen_2021, kelly_what_2023}.
+
+
+\section{Schwachstellen von KI im Kundenservice}
+
+Nachdem die Funktionsweise von LLMs darauf basiert, Muster in umfangreichen Datensätzen zu erkennen und auf Basis dessen plausible Texte zu produzieren, sind die entstehenden Fehler nur schwer vorherzusagen und zu korrigieren.
+Dem österreichischen Arbeitsmarktservice wurde genau das Anfang 2024 zum Verhängnis, nachdem deren neu eingerichteter "Berufsinfomat" - ein Chatbot auf Basis von ChatGPT - Berufsempfehlungen auf Basis traditioneller Geschlechterrollen gab, anstatt die Kenntnisse und Fähigkeiten der Beratungssuchenden einzubeziehen \cite{standardAMS}.
+Insgesamt lassen sich aber folgende Problemfelder identifizieren:
+
+\subsection{Hindernisse in der Interaktion zwischen Mensch und KI}
+LLMs können die komplexe Emotionen von Menschen oft nur unzureichend reagieren und auf den Kontext oft nur unzureichend eingehen.
+Das führt bei Kunden oft zu Frustration, die in der Zusammenarbeit mit Menschen nicht aufgetreten wäre \cite{pollmann2021kundenservice}.
+
+\subsection{Ethische Bedenken und Privatsphäre}
+Hierunter fallen sämtliche Probleme, die durch Biases in den Trainingsdaten entstehen oder aufgrund der Datenweitergabe an dritte entstehen. 
+Auch Umweltaspekte spielen eine Rolle. 
+KI-Entscheidungen können intransparent, diskriminierend oder unfair sein, insbesondere bei der Automatisierung sensibler Prozesse. \cite{andezion_grundlagen_2024}
+
+\subsection{Technische Herausforderungen}
+In dieses Themenfeld fallen sämtliche Probleme, die die praktische Umsetzung von KI Systemen im Kundenservice betreffen. U.a. geht es dabei um die Anpassung von LLMs an konkrete Geschäftsfelder oder deren generelle Skalierbarkeit, einen möglichen "Model Collapse" oder immer relevanter werdende Umweltbedenken durch Strom- und Wasserverbrauch durch LLMs.
+
+\subsection{Kundenakzeptanz}
+Viele Menschen stehen LLMs skeptisch gegenüber. 
+Das hat den Grund, dass LLMs oder AI oftmals als nicht verlässlich oder auch nicht empathisch angesehen werden.
+Zudem stellt sich für viele Menschen auch die Frage der Verantwortung gegenüber produzierten Inhalten. Wer haftet, wenn das LLM Schäden in Millionenhöhen verursacht?
+
+\subsection{Model Collapse}
+Model Collapse bezeichnet den Qualitätsverlust bei großen Sprachmodellen (LLMs), der entsteht, wenn diese während ihres Trainings oder einer erneuten Feinabstimmung überwiegend mit von ihnen selbst generierten Daten trainiert werden. Dies führt zu einer schleichenden Verschlechterung ihrer Fähigkeit, qualitativ hochwertige und vielfältige Ergebnisse zu liefern, da die Fehler und Verzerrungen der generierten Daten im Modell verstärkt werden \cite{modelCollapse}.
+Hierbei unterscheidet man zwei Sonderfälle: den early model collapse und den late model collapse \cite{shumailov2023curse}.
+
+Early Model Collapse tritt auf, wenn das Modell beginnt, Informationen über die Ränder der ursprünglichen Verteilung zu verlieren. Dies führt dazu, dass seltene oder ungewöhnliche Muster aus den Daten zunehmend ungenau oder gar nicht mehr repräsentiert werden.
+
+Late Model Collapse beschreibt den Zustand, in dem das Modell verschiedene Modi der ursprünglichen Verteilungen vermischt und schließlich zu einer Verteilung konvergiert, die nur noch wenig Ähnlichkeit mit der Originalverteilung aufweist. Diese Verteilung ist häufig durch eine extrem geringe Varianz gekennzeichnet. Hierbei verliert das Modell seine Fähigkeit, die zugrunde liegende Lernaufgabe korrekt wahrzunehmen.
+
+Zur Sicherstellung einer nachhaltigen Lernfähigkeit ist der Zugang zu Originaldatenquellen sowie die Verfügbarkeit von nicht-LLM-generierten Daten unerlässlich. Dies wirft Fragen zur Herkunft der Daten auf, die aus dem Internet gesammelt werden. Eine mögliche Lösung ist eine gemeinschaftliche Koordination, um die Provenienz von Inhalten zu verfolgen. Ohne solche Maßnahmen könnte es zunehmend schwierig werden, neue LLM-Versionen zu trainieren, da der Zugang zu menschlich generierten Daten in großem Maßstab eingeschränkt ist \cite{shumailov2023curse}.
+
+\section{Lösungsansätze und Forschungsfragen}
+
+\subsection{Hindernisse in der Interaktion zwischen Mensch und KI}
+
+Ein möglicher Lösungsansatz hierfür wäre die Integration von Tools wie des Natural Language Processing (NLP) \cite{nlp}. Der Einsatz von fortgeschrittenen NLP-Algorithmen ermöglicht eine genauere Erkennung von Kontext, Intention und Emotion der User, was Irrtümer und falsche Informationen minimieren sollte \cite{wulf2024utilizinglargelanguagemodels}. Eine andere Möglichkeit wäre eine sogenannte Hybridlösung, wo der Kunde nahtlos und ohne seine/ihre Kenntnis zu einem menschlichen Mitarbeiter wechseln kann, wenn ein LLM an seine Grenzen stößt. Hierfür muss das LLM aber auch erkennen, dass es außerhalb seines Nutzungsareals ist. Zudem können Technologien wie Sentimentanalyse und Emotionserkennung verwendet werden, um die Stimmung des Kunden zu identifizieren und entsprechend zu reagieren.
+
+\subsection{Ethische Bedenken}
+
+Hierfür gibt es einige offensichtliche Lösungsansätze:
+
+\begin{enumerate}
+    \item \textbf{Ethik-Leitlinien und Audits}: Unternehmen sollten Ethik-Leitlinien für den Einsatz von KI erstellen und regelmäßige Audits durchführen.
+    \item \textbf{Erklärbare KI}: KI-Modelle sollten nachvollziehbar und überprüfbar sein, um Vertrauen aufzubauen. Dies kann durch Technologien erreicht werden, die die Entscheidungslogik der KI sichtbar machen.
+    \item \textbf{Bias-Management}: Verwendung diverser und qualitativ hochwertiger Trainingsdaten, um Verzerrungen (Bias) in den Modellen zu minimieren.
+\end{enumerate}
+
+\subsection{Privatsphäre und Datenschutz}
+
+Auch hierfür birgt die Verarbeitung sensibler Kundendaten durch KI das Risiko von Datenmissbrauch und Datenschutzverletzungen. Dagegen kann man mit den folgenden Lösungsansätzen entgegenhalten:
+
+\begin{enumerate}
+    \item \textbf{Datenschutz durch Design}: KI-Systeme sollten so entwickelt werden, dass der Schutz der Privatsphäre von Anfang an gewährleistet ist (z. B. Anonymisierung, Datenminimierung).
+    \item \textbf{Transparente Datenverarbeitung}: Kunden sollten informiert werden, wie ihre Daten genutzt werden, und die Möglichkeit haben, der Verarbeitung zu widersprechen, wie formuliert in \cite{Humm2022}.
+    \item \textbf{Regulatorische Compliance}: Einhaltung von Datenschutzgesetzen wie DSGVO durch technische und organisatorische Maßnahmen.
+\end{enumerate}
+
+\subsection{Kundenakzeptanz}
+
+Viele Kunden sind skeptisch gegenüber KI, insbesondere, wenn es um deren Verlässlichkeit und Empathiefähigkeit geht. Hier kann man auch dagegenhalten:
+
+\begin{enumerate}
+    \item \textbf{Kundentraining und Transparenz}: Aufklärung der Kunden über die Fähigkeiten und Grenzen von KI. Detaillierte Studien wie in \cite{pi2024contactcomplexitycustomerservice} betonen die Bedeutung der Kundenaufklärung.
+    \item \textbf{Personalisierung}: Die KI sollte personalisierte Antworten geben, um ein menschlicheres Kundenerlebnis zu schaffen.
+    \item \textbf{Feedbackintegration}: Kundenfeedback sollte systematisch gesammelt und in die Weiterentwicklung der KI einbezogen werden.
+\end{enumerate}
+
+\subsection{Technische Herausforderungen}
+
+KI-Systeme können fehlerhaft, instabil oder nicht skalierbar sein, was die Kundenerfahrung beeinträchtigt. Hier muss man entschieden vorgehen und die Systeme über die folgenden Konzepte regelmäßig testen: 
+
+\begin{enumerate}
+    \item \textbf{Robustheit und Skalierbarkeit}: Regelmäßige Tests und Optimierungen der KI-Modelle, um technische Stabilität sicherzustellen. \cite{fu2020icsassistintelligentcustomerinquiry} diskutiert beispielsweise die Anwendung robuster Systeme in großen E-Commerce-Umgebungen.
+    \item \textbf{Notfallmanagement}: Implementierung von Backup-Systemen und Eskalationsmechanismen, um bei Systemausfällen schnell reagieren zu können.
+    \item \textbf{Kontinuierliche Verbesserung}: KI-Systeme sollten durch Feedback-Loops ständig weiterentwickelt und an neue Anforderungen angepasst werden.
+\end{enumerate}
+
+Auch das allbekannte Problem der \textbf{Halluzination} sollte minimiert bis ganz vermieden werden. KI-Systeme können falsche oder irreführende Antworten generieren, insbesondere bei unzureichendem Training oder mangelhaften Daten. Hier kann man mit den folgenden Ansätzen dagegenhalten:
+
+\begin{enumerate}
+    \item \textbf{Datenvalidierung}: Sicherstellen, dass die Trainingsdaten aktuell, korrekt und repräsentativ sind.
+    \item \textbf{Antwortüberprüfung}: Implementierung von Mechanismen, die KI-generierte Antworten durch menschliche Experten überprüfen lassen.
+    \item \textbf{Erweiterung des Modells}: Kombination von KI-Modellen mit externen Datenbanken oder Wissensgraphen zur Verbesserung der Antwortgenauigkeit.
+\end{enumerate}
+
+\subsection{Model Collapse}
+Hierfür sind die bereits darüber angeführten Ansätze hilfreich, allerdings lassen sich noch ein paar problem spezifische Ansätze formulieren:
+
+\begin{enumerate}
+    \item \textbf{Hybridansatz im Training}: Eine Kombination aus Originaldaten und synthetischen Daten kann genutzt werden, wobei das Verhältnis so gesteuert wird, dass die Generalisierungsfähigkeit erhalten bleibt.
+    \item \textbf{Modell-Diversität}: Mehrere unabhängige Modelle können genutzt werden, um gegenseitige Fehler zu kompensieren, indem sie sich gegenseitig validieren oder Daten generieren.
+    \item \textbf{Einschränkung der Selbstreferenzialität}: Modelle können darauf trainiert werden, eigene Fehler zu erkennen und korrigieren zu lernen, oder in den Trainingspipelines können bewusst Fehler eingefügt werden, um robuste Mechanismen zur Fehlerbehebung zu fördern.
+\end{enumerate}
+
+In Zeiten, wo die Erderwärmung massiv voranschreitet, gibt es außerdem den Umweltaspekt zu bedenken. Nach \cite{energyUsage} benötigt ChatGPT pro Anfrage etwa 2,9 Wh, insgesamt benötigt ChatGPT 564 MWh pro Tag. Nach \cite{waterUsage} benötigt ChatGPT in etwa 500 ml Wasser pro Interaktion und es wird erwartet, dass der gesamte globale AI-Wasserverbrauch 2027 etwa 4,2 bis 6,6 Milliarden Kubikmeter an Wasser beträgt. Um Wasser- und Energieverbrauch möglichst niedrig zu halten, gibt es folgende Ansatzpunkte:
+
+\begin{enumerate}
+    \item \textbf{LLMs spärlich verwenden}: Nicht jede Frage muss an ein LLM gestellt werden. Manchmal reicht es auch, jemanden zu fragen oder einfach zu googeln. 
+    \item \textbf{Umweltfreundliche Anbieter verwenden}: Anbieter von LLMs auswählen, deren Rechenzentren mit grünem Strom betrieben werden.
+    \item \textbf{Fine-Tuning der Abfrage}: Je genauer die Anfrage formuliert ist, desto geringer ist die Wahrscheinlichkeit, eine zweite Frage stellen zu müssen
+    \item \textbf{Fragen kombinieren}: Mehrere Fragen in eine Frage zusammenfassen. Statt zu fragen, wie viel Grad es heute hat und dann, ob es regnen wird, kann man das in einer Frage zusammenfassen.
+\end{enumerate}
+
+
+
+%Nützliche cites: \cite{cheng_human_2022, pizzi_artificial_2021, song_will_2022, barton_prinzipien_2022, fan_imbalanced_2022}
+%Ethics: \cite{parviainen_chatbot_2022, kooli_chatbots_2023, tawfeeq_ethical_2023, gupta_use_2023}
+%Bias: \cite{xue_bias_2023, oca_bias_nodate, feine_gender_2020, beattie_measuring_2022}
+
+\section{Conclusion}
+In dieser Arbeit wurde die Rolle von Künstlicher Intelligenz (KI) im Kundenservice kritisch beleuchtet, wobei insbesondere die Schwächen, Herausforderungen und potenziellen Lösungsansätze im Fokus standen. Der Einsatz von KI-Systemen wie Chatbots und Large Language Models (LLMs) hat die Kundeninteraktion durch skalierbare, kosteneffiziente und rund um die Uhr verfügbare Services revolutioniert. Diese Fortschritte gehen jedoch mit Herausforderungen einher, die adressiert werden müssen, um die Effektivität und Zuverlässigkeit von KI im Kundenservice zu maximieren.
+
+Unsere Analyse zeigt, dass KI-Technologien zwar erhebliche Effizienzgewinne und Personalisierungsmöglichkeiten in der Kundenbetreuung bieten, jedoch auch Herausforderungen wie mangelndes Vertrauen, Datenschutzbedenken, ethische Fragestellungen und technische Unzuverlässigkeit mit sich bringen. Probleme wie Verzerrungen in den Trainingsdaten, fehlende Empathie und mögliche Risiken für die Datensicherheit können die Akzeptanz und Zufriedenheit der Kunden beeinträchtigen.
+In jedem Fall sollte man deshalb unter den folgenden Umständen von LLMs im Kundenservice absehen:
+\begin{itemize}
+    \item Wenn Falschaussagen schwerwiegende Konsequenzen haben können (etwa bei Medizinischer oder Finanzieller Beratung).
+    \item Wenn besonders schützenswerte Daten verarbeitet werden sollen und nur externe KI-Systeme (z.B. Chat-GPT) zur Verfügung stehen.
+    \item Wenn die Kundschaft nicht technikaffin ist.
+    \item Wenn die Anpassung an das konkrete Geschäftsfeld nur schwer möglich ist (etwa aufgrund des Fehlens zusätzlicher Trainingsdaten).
+\end{itemize}
+Darüber hinaus sind auch ökologische Aspekte wie der Energie- und Wasserverbrauch von KI-Systemen einzubeziehen.
+
+Um die Potenziale der KI im Kundenservice voll auszuschöpfen, ist ein differenzierter und verantwortungsvoller Umgang mit der Technologie erforderlich. Dies umfasst die Entwicklung transparenter und ethischer Leitlinien wie die oben genannten Ausschlusskriterien, den Einsatz robuster Technologien zur Reduzierung von Fehlern und Verzerrungen sowie Maßnahmen zur Förderung von Kundenvertrauen und -akzeptanz. 
+Insbesondere hybride Ansätze, bei denen KI und menschliche Agenten zusammenarbeiten, könnten eine effektive Lösung darstellen, um die Schwächen beider Systeme zu minimieren.
+
+Abschließend plädiert diese Arbeit für eine kritisch-reflektierte Implementierung von KI im Kundenservice, die nicht nur technische und wirtschaftliche Aspekte, sondern auch gesellschaftliche, ethische und ökologische Dimensionen berücksichtigt.
+
+\bibliographystyle{unsrt}
+\bibliography{sample, group-zotero}
+
+\end{document}
