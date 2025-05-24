@@ -1,0 +1,206 @@
+% Copyright (C) 2014-2023 by Thomas Auzinger <thomas@auzinger.name>
+
+\documentclass[draft, final]{vutinfth} % Remove option 'final' to obtain debug information.
+
+% Load packages to allow in- and output of non-ASCII characters.
+\usepackage{lmodern}        % Use an extension of the original Computer Modern font to minimize the use of bitmapped letters.
+\usepackage[T1]{fontenc}    % Determines font encoding of the output. Font packages have to be included before this line.
+\usepackage[utf8]{inputenc} % Determines encoding of the input. All input files have to use UTF8 encoding.
+
+% Extended LaTeX functionality is enables by including packages with \usepackage{...}.
+\usepackage{amsmath}    % Extended typesetting of mathematical expression.
+\usepackage{amssymb}    % Provides a multitude of mathematical symbols.
+\usepackage{mathtools}  % Further extensions of mathematical typesetting.
+\usepackage{microtype}  % Small-scale typographic enhancements.
+\usepackage[inline]{enumitem} % User control over the layout of lists (itemize, enumerate, description).
+\usepackage{multirow}   % Allows table elements to span several rows.
+\usepackage{booktabs}   % Improves the typesetting of tables.
+\usepackage{subcaption} % Allows the use of subfigures and enables their referencing.
+\usepackage[ruled,linesnumbered,algochapter]{algorithm2e} % Enables the writing of pseudo code.
+\usepackage[usenames,dvipsnames,table]{xcolor} % Allows the definition and use of colors. This package has to be included before tikz.
+\usepackage{nag}       % Issues warnings when best practices in writing LaTeX documents are violated.
+\usepackage{todonotes} % Provides tooltip-like todo notes.
+\usepackage{hyperref}  % Enables hyperlinking in the electronic document version. This package has to be included second to last.
+\usepackage[acronym,toc]{glossaries} % Enables the generation of glossaries and lists of acronyms. This package has to be included last.
+
+% Custom packages
+\usepackage{subfiles} % Best loaded last in the preamble
+\usepackage{epigraph}
+% \usepackage{hyperref}
+
+% Define convenience functions to use the author name and the thesis title in the PDF document properties.
+\newcommand{\authorname}{Aydan Namdar Ghazani} % The author name without titles.
+\newcommand{\thesistitle}{Accelerating Software Integration and Delivery} % The title of the thesis. The English version should be used, if it exists.
+\newcommand{\thesissubtitle}{A Case Study on a FLOSS Project} % The title of the thesis. The English version should be used, if it exists.
+
+% Set PDF document properties
+\hypersetup{
+    pdfpagelayout   = TwoPageRight,           % How the document is shown in PDF viewers (optional).
+    linkbordercolor = {Melon},                % The color of the borders of boxes around hyperlinks (optional).
+    pdfauthor       = {\authorname},          % The author's name in the document properties (optional).
+    pdftitle        = {\thesistitle},         % The document's title in the document properties (optional).
+    pdfsubject      = {Subject},              % The document's subject in the document properties (optional).
+    pdfkeywords     = {a, list, of, keywords} % The document's keywords in the document properties (optional).
+}
+
+\setpnumwidth{2.5em}        % Avoid overfull hboxes in the table of contents (see memoir manual).
+\setsecnumdepth{subsection} % Enumerate subsections.
+\setcounter{tocdepth}{1}
+
+\nonzeroparskip             % Create space between paragraphs (optional).
+\setlength{\parindent}{0pt} % Remove paragraph indentation (optional).
+
+\makeindex      % Use an optional index.
+\makeglossaries % Use an optional glossary.
+%\glstocfalse   % Remove the glossaries from the table of contents.
+
+% Set persons with 4 arguments:
+%  {title before name}{name}{title after name}{gender}
+%  where both titles are optional (i.e. can be given as empty brackets {}).
+\setauthor{}{\authorname}{}{male}
+\setadvisor{Univ.Lektor Dipl.-Ing. Dr.techn.}{Markus Raab}{BSc}{male}
+
+% For bachelor and master theses:
+% \setfirstassistant{Pretitle}{Forename Surname}{Posttitle}{male}
+% \setsecondassistant{Pretitle}{Forename Surname}{Posttitle}{male}
+% \setthirdassistant{Pretitle}{Forename Surname}{Posttitle}{male}
+
+% For dissertations:
+% \setfirstreviewer{Pretitle}{Forename Surname}{Posttitle}{male}
+% \setsecondreviewer{Pretitle}{Forename Surname}{Posttitle}{male}
+
+% For dissertations at the PhD School and optionally for dissertations:
+% \setsecondadvisor{Pretitle}{Forename Surname}{Posttitle}{male} % Comment to remove.
+
+% Required data.
+\setregnumber{11709245}
+\setdate{08}{07}{2023} % Set date with 3 arguments: {day}{month}{year}.
+\settitle{\thesistitle}{}
+\setsubtitle{\thesissubtitle}{}
+
+% Select the thesis type: bachelor / master / doctor.
+% Bachelor:
+\setthesis{bachelor}
+%
+% Master:
+%\setthesis{master}
+%\setmasterdegree{dipl.} % dipl. / rer.nat. / rer.soc.oec. / master
+%
+% Doctor:
+%\setthesis{doctor}
+%\setdoctordegree{rer.soc.oec.}% rer.nat. / techn. / rer.soc.oec.
+
+% For bachelor and master:
+\setcurriculum{Software \& Information Engineering}{Software \& Information Engineering} % Sets the English and German name of the curriculum.
+
+% Optional reviewer data:
+\setfirstreviewerdata{Affiliation, Country}
+\setsecondreviewerdata{Affiliation, Country}
+
+\begin{document}
+\epigraphfontsize{\small\itshape}
+\setlength\epigraphwidth{14cm}
+\setlength\epigraphrule{0pt}
+
+\frontmatter % Switches to roman numbering.
+% The structure of the thesis has to conform to the guidelines at
+%  https://informatics.tuwien.ac.at/study-services
+
+%\addtitlepage{naustrian} % German title page.
+\addtitlepage{english} % English title page.
+\addstatementpage
+
+% \vspace*{\fill}
+% \begin{center}
+% To those who always stood behind me
+% \end{center}
+% \vfill
+
+\begin{acknowledgements*}
+
+I want to thank my family for always supporting me,
+
+Markus and Yvonne for this wonderful opportunity of a project,
+
+and everyone else who stood behind me, after all this time.
+
+\end{acknowledgements*}
+
+% ACRONYMS
+\newacronym{ci}{CI}{Continuous Integration}
+\newacronym{cd}{CD}{Continuous Delivery}
+\newacronym{ct}{CT}{Continuous Testing}
+\newacronym{cicd}{CI/CD}{Continuous Integration and Delivery}
+\newacronym{scm}{SCM}{Source Code Management}
+\newacronym{vcs}{VCS}{Version Control System}
+\newacronym{e2e}{E2E}{End-to-End}
+\newglossaryentry{FLOSS}
+{
+  name={FLOSS},
+  description={An abbreviation for Free/Libre and Open Source Software, refers to software that is both free in terms of user freedom and open source in terms of its accessible source code \cite{FLOSS/FOSS}.}
+}
+\newglossaryentry{worker}
+{
+  name={worker},
+  description={is a computing unit within a distributed environment that performs tasks or computations.}
+}
+
+\begin{kurzfassung}
+    PermaplanT ist ein innovatives \gls{FLOSS} Projekt.
+    Um den Entwicklungsprozess zu beschleunigen, sind gute \gls{cicd} Praktiken unerlässlich.
+    Durch die Implementierung einer effizienten deployment pipeline können Entwickler schnell Feedback zu ihren Änderungen erhalten, frühzeitig Fehler erkennen und widerstandsfähigeren Code produzieren.
+    Durch kontinuierliche Tests und Validierung wird sichergestellt, dass das Projekt wie beabsichtigt funktioniert und ein hohes Qualitätsniveau aufrechterhalten wird.
+    Dieser iterative Ansatz erleichtert effiziente Feedback-Schleifen und ermöglicht es dem Projekt, sich schnell an die sich ändernde Benutzeranforderungen anzupassen.
+    Die Erstellung einer nachhaltigen deployment pipeline mit automatisierten Tests hilft PermaplanT, eine benutzerzentrierte, anpassungsfähige Lösung mit möglichen häufigen Softwareupdates zu liefern.
+\end{kurzfassung}
+
+\begin{abstract}
+    PermaplanT is a new cutting-edge \gls{FLOSS} project.
+    To accelerate its development process, the establishment of well-structured Continuous Integration and Continuous Delivery practices are essential.
+    By implementing an efficient deployment pipeline, developers can get rapid feedback on their changes, detect bugs early and produce more resilient code.
+    Continuously testing and validating each iteration, ensures that the project functions as intended, and maintains a high level of quality.
+    This iterative approach facilitates efficient feedback loops, enabling the project to quickly adapt to changing user requirements.
+    The creation of a sustainable deployment pipeline with automated tests helps PermaplanT deliver a user-centric, adaptable solution with  frequent software updates.
+\end{abstract}
+
+% Select the language of the thesis, e.g., english or naustrian.
+\selectlanguage{english}
+
+% Add a table of contents (toc).
+\tableofcontents % Starred version, i.e., \tableofcontents*, removes the self-entry.
+
+% Switch to arabic numbering and start the enumeration of chapters in the table of content.
+\mainmatter
+
+% ALL CHAPTERS
+\subfile{introduction}
+\subfile{terminology}
+\subfile{problem}
+\subfile{method}
+\subfile{results}
+\subfile{conclusion}
+
+\backmatter
+
+% Use an optional list of figures.
+\listoffigures % Starred version, i.e., \listoffigures*, removes the toc entry.
+
+% Use an optional list of tables.
+\cleardoublepage % Start list of tables on the next empty right hand page.
+\listoftables % Starred version, i.e., \listoftables*, removes the toc entry.
+
+% Use an optional list of algorithms.
+% \listofalgorithms
+% \addcontentsline{toc}{chapter}{List of Algorithms}
+
+% Add an index.
+\printindex
+
+% Add a glossary.
+\printglossaries
+
+% Add a bibliography.
+\bibliographystyle{ieeetr}
+\bibliography{bib}
+
+\end{document}
