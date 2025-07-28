@@ -1,0 +1,446 @@
+\documentclass[twoside]{ai_ethics_class}
+
+\usepackage{ai_ethics_macros}
+
+% Here you can include the standard packages you use.
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%The following line defines the page header consisting of the surname of the author.
+\def\lastname{Namdar Ghazani}
+
+\begin{document}
+
+\begin{frontmatter}
+  \title{Toward Sustainable Artificial Intelligence: A Literature Review on Green AI and Environmental Ethics}
+  \author{Aydan Namdar Ghazani}
+  \address{11709245 \\ aydan.ghazani@tuwien.ac.at \\ AI Ethics}
+
+  \begin{abstract}
+The rapid growth of Artificial Intelligence (AI) has introduced a significant, yet often underestimated, environmental burden. This literature review examines the escalating environmental costs associated with current AI development paradigms, often termed ``Red AI,'' which prioritize computational power over efficiency. We synthesize findings on the complete lifecycle impact of AI, revealing substantial carbon emissions and water consumption from hardware manufacturing, model training, and inference. Our review highlights the critical need for a paradigm shift towards Green AI''—an approach that incorporates computational efficiency alongside performance as core research metrics. We explore technical solutions, including algorithmic innovations and hardware optimizations, and discuss the essential role of policy, ethical frameworks, and governance in fostering sustainable AI. This paper argues that a comprehensive understanding of AI's environmental footprint is crucial for aligning technological progress with global sustainability goals, advocating for a transition to more responsible and resource-aware AI development and deployment.
+  \end{abstract}
+
+  \begin{keyword}
+  Artificial intelligence, Red AI, Green AI, Sustainability, Environmental ethics, Carbon footprint, Energy efficiency, Water consumption, Climate change, AI governance
+  \end{keyword}
+ \end{frontmatter}
+
+\section{Introduction}
+
+% Key papers: Strubell et al. (2019), Schwartz et al. (2020), Bender et al. (2021)
+
+\subsection{Background and Problem Statement}
+AI has witnessed exponential growth in recent years, marked by increasingly complex models and computationally intensive training processes \cite{schwartz2020green}.
+This surge, particularly in deep learning, has led to remarkable advancements in areas such as object recognition and natural language processing.
+However, this progress comes at a significant environmental cost.
+As Schwartz et al. note, the computational costs of AI research have increased dramatically, with training costs doubling every few months.
+This trend raises concerns about the environmental footprint of AI, especially in the face of urgent climate change challenges.
+The paradox lies in AI's potential as both a problem, due to its energy consumption, and a solution, through its applications in environmental monitoring and sustainable development \cite{cowls2021ai,rolnick2022tackling}.
+
+\subsection{Research Objectives and Scope}
+This paper aims to synthesize current knowledge on Green AI and environmental ethics, addressing the growing need for sustainable AI practices.
+The primary objective is to provide a comprehensive overview of the environmental impact of AI, while also exploring strategies to mitigate its carbon footprint.
+Key research questions include: What are the primary drivers of energy consumption in AI research? What is the scale of AI's environmental impact when considering its full lifecycle? And what ethical and policy considerations should guide the development of more sustainable AI technologies? This study employs a literature review methodology, examining relevant publications and research articles within a temporal scope of 2018-2025, focusing on the intersection of AI, environmental science, and ethics.
+
+\subsection{Paper Organization}
+The paper proceeds as follows.
+Section 2 introduces the conceptual foundations of Green AI and environmental ethics.
+Section 3 examines the environmental impact of AI systems, followed by Section 4 which discusses relevant policy, ethical, and governance issues.
+Section 5 concludes with a summary and future outlook.
+
+\section{Conceptual Foundations}
+
+% Key papers: Schwartz et al. (2020), Lacoste et al. (2019), Jobin et al. (2019)
+
+\subsection{Red AI}
+
+Contemporary AI research has increasingly embraced what Schwartz et al. term ``Red AI''—an approach that prioritizes performance improvements through massive computational expenditure, often disregarding associated costs \cite{schwartz2020green}.
+This paradigm essentially attempts to ``buy'' better results through computational force rather than algorithmic innovation.
+
+Red AI manifests across three primary dimensions: model complexity, dataset size, and experimental scope.
+Modern language models exemplify this trend, with parameter counts escalating from BERT-large's 350 million parameters to GPT-3's 175 billion parameters within just a few years.
+Similarly, training datasets have grown exponentially, with some models requiring hundreds of times more data than their predecessors \cite{bender2021dangers}.
+Finally, hyperparameter optimization has become increasingly exhaustive, with some studies training thousands of model variants to achieve marginal performance gains \cite{schwartz2020green}.
+
+The important challenge lies in the logarithmic relationship between computational investment and performance improvement.
+Achieving linear gains in accuracy typically requires exponentially larger models, leading to diminishing returns at increasingly prohibitive costs \cite{schwartz2020green}.
+This trend has created significant barriers to research accessibility and reproducibility, while raising concerns about the environmental sustainability of AI development.
+
+\subsection{Green AI}
+
+In response to these challenges, Green AI emerges as a research philosophy that explicitly considers computational efficiency alongside accuracy metrics \cite{schwartz2020green}.
+Rather than pursuing performance at any cost, Green AI promotes approaches that optimize the performance-to-efficiency trade-off, encouraging researchers to develop novel methods that achieve competitive results while minimizing resource consumption.
+
+Central to Green AI is the recognition that efficiency should be measured and reported as rigorously as accuracy.
+Schwartz et al. introduce Floating-Point Operations (FPO) as a way to measure the amount of mathematical computation involved in generating results, regardless of the specific hardware used.
+FPO refer to calculations involving real numbers—numbers that can have decimals—such as addition, subtraction, multiplication, or division. By counting these operations, FPO provides a standardized metric that helps compare computational effort fairly across different devices and research settings \cite{schwartz2020green}.
+This metric captures the actual algorithmic complexity while remaining independent of specific hardware configurations or implementation details.
+
+Green AI represents more than a technical consideration—it embodies a shift toward sustainable and inclusive research practices.
+The paradigm encourages innovation through algorithmic creativity rather than computational brute force, potentially leading to more elegant and generalizable solutions.
+
+\subsection{Environmental Ethics in Technology}
+
+The exponential growth in computational demands of AI research raises fundamental questions about the ethical responsibilities of technologists and researchers toward environmental sustainability.
+The carbon footprint of training large-scale AI models has become comparable to significant industrial processes, with some estimates suggesting that training a single large language model can emit as much CO\textsubscript{2} as several cars over their entire lifetimes \cite{strubell2019energy}.
+
+This environmental impact exposes tensions between anthropocentric and ecocentric ethical perspectives.
+An anthropocentric view might justify high computational costs if AI advances sufficiently benefit human welfare, treating environmental resources as instrumental to human progress—an approach that aligns with ``Red AI'' paradigms that prioritize capability advancement.
+Conversely, an ecocentric perspective recognizes intrinsic value in ecological systems and calls for restraint in resource consumption regardless of potential human benefits, reflecting ``Green AI'' principles that emphasize environmental sustainability.
+The AI research community increasingly finds itself navigating between red AI's anthropocentric focus and green AI's ecocentric constraints, with some researchers seeking a middle path that balances human advancement with ecological responsibility.
+
+Questions of intergenerational justice further complicate these ethical considerations.
+Current AI research decisions impose environmental costs on future generations while concentrating benefits among present-day researchers and technology companies \cite{fairbrother2020much}.
+This raises concerns about corporate responsibility, particularly for large technology firms whose computational expenditures dwarf those of academic institutions.
+The asymmetric distribution of benefits and burdens challenges traditional notions of research ethics, suggesting that environmental impact should be factored into institutional review processes and funding decisions.
+
+\section{Environmental Impact of AI Systems}
+
+% Key papers: Strubell et al. (2019), Patterson et al. (2021), Lacoste et al. (2019), Bender et al. (2021), Dodge et al. (2022)
+
+\subsection{Training Phase Emissions}
+The computational demands of training state-of-the-art AI models result in substantial carbon emissions.
+Strubell et al. \cite{strubell2019energy} revealed that training a single Transformer model with neural architecture search can emit up to 626,155 pounds of CO\textsubscript{2}, equivalent to the lifetime emissions of approximately five automobiles.
+The scale of emissions has grown dramatically with model size.
+Patterson et al. \cite{patterson2022carbon} reported that training GPT-3, with its 175 billion parameters, consumed 1,287 megawatt-hours of electricity and produced 552 tons of CO\textsubscript{2} emissions, comparable to the annual emissions of 112 gasoline-powered vehicles.
+Even smaller models carry significant environmental costs.
+Strubell et al. \cite{strubell2019energy} highlight that training BERT on a GPU generates emissions roughly equivalent to a trans-American flight.
+
+\subsection{Inference and Operational Emissions}
+While training receives considerable attention, the operational phase presents an equally important challenge.
+It has been estimated that GPT-3's inference operations alone may generate approximately 8.4 tons of CO\textsubscript{2} annually, though this figure is based on speculative assumptions about model usage and infrastructure efficiency \cite{lboro2024inference}.
+Google's internal assessments indicate that 60\% of AI-related energy consumption stems from inference, while 40\% comes from training \cite{patterson2022carbon}.
+This distribution suggests that for widely deployed models, the operational phase may ultimately represent the larger environmental burden.
+The scale of AI deployment amplifies these concerns.
+Industry estimates suggest that each ChatGPT query generates approximately 4.32 grams of CO\textsubscript{2} \cite{smartly2024inference}.
+In contrast, peer-reviewed studies that consider broader lifecycle factors—such as retraining and model updates—estimate a lower footprint of around 2.2 grams of CO\textsubscript{2} per query \cite{tomlinson2024carbon} or 1.5 grams of CO\textsubscript{2} per query \cite{vanderbauwhede2024estimating}.
+This discrepancy largely arises from differences in whether retraining and other lifecycle emissions are included.
+By comparison, a typical Google search query produces approximately 0.02 grams of CO\textsubscript{2}, while according to Vanderbauwhede et al., ChatGPT queries consume between 50 and 90 times more energy per query \cite{vanderbauwhede2024estimating}.
+
+With AI platforms collectively processing an estimated 15 trillion queries monthly, the cumulative environmental impact of inference operations represents a rapidly growing concern \cite{planbe2024trillions}.
+
+\subsection{Strategic Data Center Selection for Carbon Reduction}
+% looks good
+Cloud providers may achieve carbon neutrality at the organizational level, yet individual data centers exhibit substantial variation in carbon intensity based on their local electrical grid composition.
+Data centers powered exclusively by renewable energy sources demonstrate significantly lower carbon footprints compared to facilities dependent on fossil fuel-based electricity generation.
+The strategic selection of data center location for algorithm training represents a critical decision point with profound implications for direct carbon emissions \cite{lacoste2019quantifying}.
+This infrastructure choice can be implemented through deliberate server location selection prior to job deployment.
+Empirical analysis reveals that data center location alone can create emission variations of up to 40-fold, ranging from 20g CO\textsubscript{2}eq/kWh in renewable-powered facilities to 820g CO\textsubscript{2}eq/kWh in fossil fuel-dependent locations \cite{lacoste2019quantifying}.
+For computationally intensive models such as VGG or BERT, which require multi-GPU training over extended periods of several weeks, the carbon impact differential becomes substantial.
+Training these models on hydroelectricity-powered infrastructure versus fossil fuel-powered facilities can prevent the emission of several hundred kilograms of CO\textsubscript{2} equivalent.
+
+\subsection{Lifecycle Analysis and Hidden Costs}
+
+The environmental impact of AI systems extends far beyond the direct energy consumption of training and inference, containing substantial hidden costs.
+A complete lifecycle assessment reveals multiple interconnected environmental burdens that are often overlooked in traditional carbon footprint calculations.
+
+The storage infrastructure required to maintain these massive datasets also contributes to ongoing energy consumption, as data centers must continuously power storage systems and maintain data integrity through redundant backups.
+
+\subsubsection{The Scale of AI's Water Crisis}
+
+Artificial intelligence systems consume staggering amounts of water throughout their lifecycle, with global AI water usage projected to reach 4.2-6.6 billion cubic meters annually by 2027, equivalent to 4-6 times Denmark's entire water consumption \cite{li2023making}.
+This comprehensive analysis reveals that AI's water footprint extends far beyond operational cooling, encompassing massive consumption in hardware manufacturing, data center infrastructure, and electronic waste disposal, creating a sustainability challenge that threatens water security in already stressed regions worldwide.
+
+The scale of consumption is accelerating rapidly.
+Major tech companies have seen water usage increases of 17--137\% year-over-year since 2022, driven primarily by AI expansion.
+In 2023, Google's data centers consumed 23.1 billion liters of water \cite{google2023environmental}, while Microsoft withdrew 10.3 million cubic meters \cite{microsoft2025environmental}.
+
+Meanwhile, the semiconductor industry supporting AI hardware consumes 264 billion gallons annually (comparable to Hong Kong's entire population), with individual fabrication facilities using up to 20 million gallons daily \cite{frost2019quantifying}.
+
+The hidden nature of these water costs creates particular concern.
+A single GPT-3 training run requires 700,000 to 2.1 million liters depending on location \cite{li2023making}, and consumes 500ml of water per 10-50 medium length responses.
+
+\subsubsection{Hardware Manufacturing and Water Footprint}
+
+The manufacturing phase of AI hardware represents one of the most water-intensive aspects of the AI lifecycle, with semiconductor fabrication requiring ultrapure water at unprecedented scales.
+Modern chip manufacturing consumes 1,400--1,600 gallons of municipal water to produce 1,000 gallons of ultrapure water needed for silicon wafer processing, with individual wafers requiring up to 3,000 liters during fabrication \cite{industrytoday2022water}.
+
+TSMC, the dominant AI chip manufacturer, consumed 101 million metric tons of water in 2023 \cite{statista2023tsmcwater} across its facilities, equivalent to 170,000 US households' annual usage.
+Their Arizona expansion will consume 8.9 million gallons daily---representing 3\% of Phoenix's entire water production.
+Samsung's semiconductor operations \cite{samsung2023water} use 279,000 tons daily, while maintaining 85\%+ recycling rates through advanced treatment systems.
+
+The geographic concentration of semiconductor manufacturing creates regional water stress.
+By 2030–2040, Taiwan will produce 40\% of the world’s semiconductors in areas experiencing severe water shortages.
+China's semiconductor facilities use triple the water compared to US facilities for equivalent production, while consuming 27\% of the total manufacturing water in the water-stressed Jiangsu province \cite{frost2019quantifying}.
+
+The specialized nature of AI hardware further amplifies manufacturing-related environmental impacts.
+Market research firm TechInsights estimates that the three major producers (NVIDIA, AMD, and Intel) shipped 3.85 million GPUs to data centers in 2023, up from about 2.67 million in 2022, representing a 44\% increase in GPU production with associated manufacturing emissions \cite{techinsights2024gpu}.
+These specialized processors require more complex manufacturing processes and higher-grade materials than general-purpose computing hardware.
+
+% \subsubsection{Electronic Waste and End-of-Life Considerations}
+
+% Electronic waste considerations present growing environmental challenges as AI hardware becomes obsolete or requires upgrading to support more demanding models.
+% The rapid evolution of AI capabilities drives frequent hardware refresh cycles, as older generations of processors become insufficient for current AI workloads.
+% Wang et al. project that generative AI could generate 2.5 million tons of e-waste annually by 2030 without mitigation strategies \cite{wang2024ewaste}.
+% The disposal and recycling of AI-specific hardware, particularly GPUs and specialized AI accelerators, presents unique challenges due to the complex materials and potential toxic components involved in their construction.
+
+% Manufacturing waste creates additional water contamination challenges.
+% Semiconductor wastewater contains heavy metals including silver (27\%), copper (14\%), and toxic compounds requiring complex treatment.
+% Silicon concentrations reach 500--2,000 mg/L in processing sludge, while PFAS contamination and other chemical pollutants necessitate expensive treatment systems that consume additional water resources.
+
+% \subsubsection{Data Center Cooling Infrastructure}
+
+% Data center cooling represents the most visible component of AI's water footprint, with 100MW AI facilities consuming 2 million liters daily---equivalent to 6,500 households.
+% Global data center water consumption currently reaches 560 billion liters annually and is projected to double to 1,200 billion liters by 2030 as AI workloads expand.
+
+% Water consumption for cooling varies significantly based on technology and location.
+% Data centers can evaporate about 0.26--2.4 gallons (1--9 liters) per kWh of server energy for cooling purposes, with actual consumption varying significantly based on climate conditions and cooling technologies \cite{mytton2021data}.
+% Google's scope-1 onsite water consumption in 2022 increased by 20\% compared to 2021, reaching 5.6 billion gallons \cite{google2023environmental}, and Microsoft saw a 34\% increase over the same period, consuming 6.4 million cubic meters \cite{microsoft2023environmental}, largely driven by AI workload expansion.
+
+% Water Usage Effectiveness (WUE) metrics reveal dramatic variations in cooling efficiency.
+% The industry average stands at 1.8 L/kWh, while leading operators achieve significantly better performance: AWS reaches 0.19 L/kWh and Meta achieves 0.20 L/kWh in recent facilities.
+% These efficiency leaders demonstrate 80\% better performance than portfolio averages through advanced cooling technologies and operational optimization.
+
+% Cooling technology choices create fundamental trade-offs between water and energy consumption.
+% Evaporative cooling systems consume 0.26--2.4 gallons per kWh of server energy but offer 60--75\% less electricity consumption than conventional air conditioning.
+% Air cooling eliminates water usage entirely but requires significantly higher energy consumption.
+% Liquid cooling technologies represent the emerging solution, offering 92\% water usage reduction compared to traditional systems while providing 50--1000x more efficient heat transfer.
+
+% \subsubsection{Regional Variations and Water Stress}
+
+% Regional variations in environmental impact add complexity to lifecycle assessments.
+% Dodge et al. emphasized that the geographical placement of data centers in regions with abundant renewable energy resources is a strategic decision for reducing LLM's environmental impact \cite{dodge2022measuring}.
+% Data centers powered by renewable energy sources, like wind or solar, have a much lower carbon footprint than those relying on non-renewable sources like coal or natural gas, indicating that infrastructure placement decisions can dramatically alter the environmental impact of identical AI workloads.
+
+% Geographic concentration of AI infrastructure creates acute water stress in already vulnerable regions.
+% Taiwan, hosting 63\% of global semiconductor production, faces particular vulnerability with 40\% of existing facilities experiencing high water stress by 2030--2040.
+% The 2021 drought forced unprecedented water restrictions, trucked water supplies, and 15\% consumption reductions across semiconductor facilities, demonstrating climate vulnerability.
+
+% Arizona emerges as a critical stress point for AI expansion, hosting 49+ data centers despite severe water constraints.
+% TSMC's Phoenix facility will consume 8.9 million gallons daily, while multiple additional fabs could consume 40,000 acre-feet annually---creating direct competition with agricultural and residential water needs.
+% OpenAI's planned Stargate project in Texas represents another 1.2-gigawatt campus in a water-stressed region.
+
+% The water footprint extends beyond operational cooling to include electricity generation at power plants.
+% Generating electricity also consumes a lot of water through cooling at thermal power and nuclear plants and expedited water evaporation caused by hydropower plants \cite{jin2019water}.
+% This scope-2 water consumption means that AI systems indirectly contribute to water stress in regions where electricity is generated, even when the AI workloads themselves are processed in different geographic locations.
+
+% \subsubsection{Corporate Water Consumption and Mitigation Strategies}
+
+% Major technology companies are experiencing exponential water consumption growth driven by AI infrastructure expansion, challenging sustainability commitments despite efficiency improvements.
+% Google's water consumption increased 88\% since 2019, with 17\% growth in 2023 alone reaching 23.1 billion liters annually.
+% Microsoft's withdrawals grew 34\% from 2021--2022 to 10.7 million cubic meters, while Meta experienced 137\% withdrawal increases in 2023.
+
+% All major AI companies have committed to ``water positive'' status by 2030, pledging to replenish more water than they consume.
+% Google targets 120\% replenishment and achieved 18\% replenishment rates in 2023 through 112 active stewardship projects.
+% Microsoft contracted over 100 million cubic meters of replenishment while investing \$793 million in climate technologies.
+% Meta operates 18 restoration projects that returned 1.5 billion gallons in 2023.
+
+% Innovation in cooling efficiency partially offsets consumption growth.
+% Direct-to-chip liquid cooling saves 125 million liters annually per facility, while AI optimization systems reduce consumption by 4--20\% through reinforcement learning.
+% Microsoft's zero-water datacenter designs eliminate evaporative cooling entirely, though with higher energy requirements.
+
+% \subsubsection{Comprehensive Lifecycle Assessment}
+
+% The comprehensive environmental assessment of AI systems reveals that visible energy consumption during training and inference represents only a portion of the total environmental burden.
+% Hugging Face's work represents one of the first attempts to quantify lifecycle emissions comprehensively for their BLOOM model.
+% Luccioni et al. found total lifecycle emissions of 50.5 tonnes CO2eq, with 50\% from dynamic GPU consumption, 29\% from idle consumption and data center operations, and 22\% from equipment manufacturing \cite{luccioni2022estimating}.
+% Lacoste et al. provided some much-needed clarity on just how enormous the carbon footprint of large language models really is, with lifecycle assessments revealing environmental impacts substantially larger than training-only calculations suggest \cite{lacoste2019quantifying}.
+
+% The frequency of model retraining introduces additional environmental costs that compound over time.
+% Bender et al. discussed the rapid development cycles in AI, where the energy used to train prior versions goes to waste, as each iteration typically requires complete retraining rather than incremental updates \cite{bender2021dangers}.
+% This accelerated development cycle means that the environmental costs of AI research include not only successful models but also the numerous experimental iterations that contribute to final model development.
+
+% These hidden costs underscore the need for more comprehensive environmental accounting in AI development.
+% As noted by researchers developing more complete assessment methodologies, the goal is to go above and beyond just the carbon dioxide emissions of the electricity consumed during training and to account for a larger part of the life cycle in order to help the AI community get a better idea of their impact on the environment and how to begin reducing it \cite{ligozat2022unraveling}.
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+% \section{Green AI: Technical Solutions and Approaches}
+
+% \subsection{Algorithmic Efficiency Innovations}
+
+% \subsubsection{Neural Architecture Search and Efficient Model Design}
+% % looks good
+% Neural architecture search (NAS) has emerged as a powerful approach for discovering efficient model architectures that balance performance with computational requirements.
+% Recent advances in NAS focus on multi-objective optimization, where energy consumption and carbon emissions are considered alongside traditional accuracy metrics.
+% Efficient model design principles, such as depthwise separable convolutions and inverted residual blocks, have demonstrated significant reductions in computational complexity without substantial performance degradation \cite{howard2017mobilenets}.
+% These architectural innovations enable the deployment of sophisticated AI models on resource-constrained devices, reducing the need for energy-intensive cloud computing infrastructure.
+
+% \subsubsection{Pruning, Quantization, and Knowledge Distillation}
+
+% Model compression techniques have proven essential for creating environmentally sustainable AI systems.
+% Pruning methods systematically remove redundant parameters from neural networks, with structured pruning approaches achieving compression ratios of up to 90\% while maintaining competitive accuracy \cite{han2015learning}.
+% Quantization reduces the precision of model parameters and activations, enabling significant memory and energy savings during inference.
+% Knowledge distillation, introduced by Hinton et al. \cite{hinton2015distilling}, provides a framework for transferring knowledge from large, computationally expensive models to smaller, more efficient student models.
+% The combination of these techniques can reduce model size and inference time by orders of magnitude, directly translating to reduced energy consumption and carbon emissions.
+
+% \subsection{Hardware and System Optimizations}
+
+% \subsubsection{Specialized AI Accelerators and Neuromorphic Computing}
+
+% The development of specialized hardware for AI workloads represents a fundamental shift in approaching computational efficiency.
+% Application-specific integrated circuits (ASICs) and tensor processing units (TPUs) achieve superior performance-per-watt compared to general-purpose processors by optimizing for the specific operations common in neural network inference.
+% Neuromorphic computing takes inspiration from biological neural systems, implementing spike-based computation that can achieve extreme energy efficiency for certain AI tasks.
+% These hardware innovations can reduce energy consumption by several orders of magnitude compared to traditional CPU-based implementations.
+
+% \subsubsection{Edge Computing vs. Cloud Deployment Trade-offs}
+
+% The choice between edge and cloud deployment presents complex trade-offs in terms of energy efficiency and carbon emissions.
+% Edge computing reduces data transmission overhead and enables real-time processing with lower latency, potentially reducing overall energy consumption for certain applications.
+% However, cloud data centers often achieve higher energy efficiency through economies of scale and access to renewable energy sources.
+% The optimal deployment strategy depends on factors including model complexity, data volume, latency requirements, and the carbon intensity of local versus cloud infrastructure.
+% Hybrid approaches that intelligently partition computation between edge and cloud resources offer promising solutions for minimizing environmental impact while meeting performance requirements.
+
+\section{Policy, Ethics, and Governance}
+
+The governance of AI's environmental impact requires comprehensive policy frameworks that integrate technical standards, ethical considerations, and democratic participation.
+As artificial intelligence systems become increasingly pervasive in society, the need for effective governance mechanisms that address both their capabilities and their environmental consequences has become paramount.
+This section examines the evolving regulatory landscape, ethical frameworks, and governance structures that shape the development of environmentally sustainable AI.
+
+\subsection{Global AI Ethics Guidelines}
+
+\subsubsection{The Emergence of Soft Law in AI Governance}
+
+In recent years, the proliferation of artificial intelligence applications across various sectors has sparked extensive debate about the principles and values that should guide AI development and deployment \cite{jobin2019global}.
+National and international organizations have responded to concerns about AI's potential risks by establishing expert committees mandated to draft policy documents and ethical guidelines.
+These efforts have resulted in a significant increase in AI ethics guidelines, with 88\% of identified documents having been released after 2016 \cite{jobin2019global}.
+The guidelines represent instances of ``soft law''—non-legislative policy instruments that are persuasive rather than legally binding, yet have been observed to have significant practical influence on decision-making \cite{jobin2019global}.
+
+\subsubsection{Mapping the Global Landscape}
+
+Jobin et al. \cite{jobin2019global} conducted a comprehensive scoping review that identified 84 documents containing ethical principles or guidelines for AI through a systematic three-stage search process.
+The methodology involved manual searches of link hub webpages, keyword-based web searches using Google, and citation chaining to ensure theoretical saturation.
+The documents originated from diverse organizational types, with private companies (22.6\%) and governmental agencies (21.4\%) being the most prolific issuers, followed by academic institutions, intergovernmental organizations, and non-profit organizations.
+Geographically, the landscape is dominated by economically developed countries, with the USA (25\%) and UK (15.5\%) accounting for over 40\% of all guidelines, while African and South American countries remain largely unrepresented.
+
+\subsubsection{Convergence on Core Principles}
+
+The analysis revealed eleven overarching ethical principles, with five achieving particular prominence across the corpus:
+\begin{itemize}
+\item \textbf{Transparency} (featured in 73/84 sources)—encompassing explainability, interpretability, communication, and disclosure requirements for AI systems and their decision-making processes.
+\item \textbf{Justice and Fairness} (68/84 sources)—addressing bias prevention, non-discrimination, inclusion, equality, and equitable access to AI benefits.
+\item \textbf{Non-maleficence} (60/84 sources)—emphasizing safety, security, harm prevention, and protection against misuse, particularly concerning discrimination, privacy violations, and physical harm.
+\item \textbf{Responsibility and Accountability} (60/84 sources)—covering liability attribution, acting with integrity, and establishing clear accountability mechanisms.
+\item \textbf{Privacy} (47/84 sources)—focusing on data protection, informational autonomy, and privacy-preserving technical solutions \cite{jobin2019global}.
+\end{itemize}
+
+No single ethical principle appeared across all documents, yet these five principles represent an emerging global convergence in AI ethics discourse.
+
+\subsubsection{Implementation Divergences and Global Gaps}
+
+Despite apparent consensus on high-level principles, the analysis of Jobin et al. \cite{jobin2019global} reveals a significant divergences in four critical dimensions: interpretation of principles, justification for their importance, domains of application, and implementation strategies.
+For transparency, recommendations range from technical solutions like explainable AI to governance approaches such as auditing and oversight, with significant variation in what information should be disclosed and to whom.
+Justice and fairness interpretations vary from technical bias mitigation to systemic changes in workforce diversity and stakeholder engagement.
+These divergences highlight tensions between competing values, such as the conflict between requiring larger, more diverse datasets to reduce bias while simultaneously protecting individual privacy and data autonomy \cite{jobin2019global}.
+
+Jobin's study identifies significant gaps in the current AI ethics landscape, with sustainability (14/84 sources), dignity (13/84 sources), and solidarity (6/84 sources) receiving minimal attention despite their relevance to AI's environmental impact and social implications \cite{jobin2019global}.
+The geographic concentration of guideline production in economically developed countries raises concerns about power imbalances in international AI ethics discourse and the potential neglect of local knowledge, cultural pluralism, and global fairness considerations.
+This underrepresentation suggests that certain regions and perspectives are not adequately participating in shaping the global AI ethics agenda \cite{jobin2019global}.
+
+\subsection{Regulatory Landscape and Standards}
+
+\subsubsection{EU AI Act Environmental Provisions and National Strategies}
+
+The European Union's AI Act represents a pioneering effort to integrate environmental considerations into AI regulation.
+Article 40 of the Act mandates that high-risk AI systems must be designed and developed to achieve high levels of energy efficiency throughout their lifecycle \cite{euaiact40}.
+Providers of general-purpose AI models are required to document and make publicly available information about the computational resources used for training, including energy consumption metrics.
+This regulatory approach establishes a precedent for incorporating sustainability requirements into AI governance frameworks globally.
+
+National strategies across Europe have begun to explicitly address the environmental dimensions of AI development.
+France's National AI Strategy includes specific provisions for measuring and reducing the carbon footprint of AI systems, with mandatory reporting requirements for large-scale deployments \cite{france2025ai}.
+Germany's AI Strategy emphasizes the development of energy-efficient AI hardware and algorithms as a key competitive advantage \cite{germany2023ai}.
+It also aims to establish a seal of quality such as ``AI made in Germany'' and position the country as an attractive hub for the world's top AI engineers.
+The Netherlands has implemented a comprehensive framework linking AI development to climate goals, requiring public sector AI projects to undergo environmental impact assessments \cite{netherlands2019ai}.
+
+These regulatory developments reflect a growing recognition that AI's environmental impact cannot be addressed through voluntary measures alone.
+The binding nature of these provisions creates legal obligations for AI developers and deployers, fundamentally changing the incentive structure around sustainable AI development.
+However, challenges remain in harmonizing these regulations across jurisdictions and ensuring effective enforcement mechanisms.
+
+\subsubsection{ISO Standards and International Cooperation Efforts}
+
+The International Organization for Standardization (ISO) has developed several standards relevant to sustainable AI development.
+ISO/IEC JTC 1/SC 39 is the standards subcommittee responsible for developing international standards focused on the sustainability and energy efficiency of information and communication technology systems \cite{iso_jtc1_sc39}.
+ISO/IEC 23894 specifically addresses AI risk management, incorporating environmental risks into the broader risk assessment framework \cite{iso_iec23894}.
+These standards provide organizations with concrete guidelines for implementing sustainable AI practices and demonstrating compliance with regulatory requirements.
+
+International cooperation on AI governance has increasingly recognized environmental sustainability as a critical issue.
+The Global Partnership on AI (GPAI) has established a working group on responsible AI that includes environmental considerations in its mandate \cite{gpai_responsible_ai}.
+The Organisation for Economic Co-operation and Development (OECD) AI Principles explicitly mention environmental sustainability, providing a foundation for international policy alignment.
+Bilateral and multilateral agreements are beginning to include provisions for sharing best practices in sustainable AI development and deployment.
+
+The challenge of creating globally applicable standards while respecting local contexts and capabilities remains significant.
+Developing countries often face different constraints and priorities, requiring flexible approaches that balance environmental goals with development needs.
+Technology transfer mechanisms and capacity-building initiatives are essential components of effective international cooperation on sustainable AI.
+
+\subsection{Ethical Frameworks} % and Democratic Participation
+
+Effective governance of AI's environmental impact requires meaningful engagement with diverse stakeholders, including communities disproportionately affected by climate change.
+Environmental justice principles demand that the benefits and burdens of AI development be distributed equitably across society \cite{jobin2019global}.
+Communities hosting data centers often bear the environmental costs of AI infrastructure while receiving limited benefits from the technologies developed.
+Participatory governance mechanisms that include affected communities in decision-making processes are essential for addressing these inequities.
+
+Indigenous perspectives on environmental stewardship offer valuable insights for sustainable AI governance.
+Traditional ecological knowledge emphasizes long-term thinking and intergenerational responsibility, principles that align with sustainable development goals.
+Several initiatives have begun incorporating indigenous voices into AI governance discussions, recognizing the importance of diverse worldviews in shaping technology policy.
+These efforts challenge Western-centric approaches to AI governance and highlight the need for culturally sensitive frameworks.
+
+The concept of procedural justice requires that stakeholders have meaningful opportunities to influence AI governance decisions \cite{tyler1988procedural}.
+This includes access to information about AI's environmental impacts, opportunities for public comment on proposed regulations, and mechanisms for addressing grievances.
+Digital participation platforms have emerged as tools for enabling broader engagement, though challenges remain in ensuring equitable access and meaningful influence.
+The quality of stakeholder engagement directly impacts the legitimacy and effectiveness of governance frameworks.
+
+% \subsubsection{Carbon Pricing and Public Procurement Policies}
+
+% Carbon pricing mechanisms are increasingly being applied to the AI sector, creating economic incentives for sustainable development practices.
+% Several jurisdictions have implemented or proposed carbon taxes that explicitly include the energy consumption of data centers and AI training facilities.
+% The UK's Carbon Price Support mechanism now covers large-scale computing facilities, directly impacting the cost structure of AI development.
+% These pricing mechanisms internalize the environmental externalities of AI, making energy-efficient approaches more economically competitive.
+
+% Public procurement policies represent a powerful tool for driving sustainable AI adoption.
+% Governments are increasingly incorporating environmental criteria into their AI procurement processes, requiring vendors to demonstrate energy efficiency and carbon footprint metrics.
+% The United States federal government's Executive Order on AI includes provisions for sustainable procurement, prioritizing vendors who can demonstrate commitment to environmental goals.
+% These policies leverage public sector purchasing power to create market demand for sustainable AI solutions.
+
+% The effectiveness of carbon pricing depends on appropriate pricing levels and comprehensive coverage of AI-related activities.
+% Current pricing mechanisms often fail to capture the full lifecycle emissions of AI systems, including embedded carbon in hardware and indirect emissions from supply chains.
+% Future policy development must address these gaps while ensuring that pricing mechanisms do not inadvertently disadvantage smaller organizations or developing countries.
+
+\section{Conclusion}
+
+This paper has examined the critical intersection of artificial intelligence development and environmental sustainability, revealing a complex landscape of challenges and opportunities.
+Our analysis demonstrates that the current trajectory of AI research, characterized by the ``Red AI'' paradigm of pursuing performance through massive computational expenditure, poses significant threats to global sustainability goals and demands urgent change.
+
+The environmental costs of AI extend far beyond the widely discussed carbon emissions from training, encompassing a comprehensive lifecycle impact including water consumption, hardware manufacturing, and regional resource stress.
+Training a single large language model can emit hundreds of tons of CO\textsubscript{2}, equivalent to the lifetime emissions of multiple vehicles, while global AI water consumption is projected to reach 4.2--6.6 billion cubic meters annually by 2027—surpassing the total water usage of some nations.
+Crucially, many of these costs remain hidden, especially in semiconductor fabrication, where facilities consume billions of gallons of water annually in already water-stressed regions.
+
+The emergence of ``Green AI'' as both a research philosophy and practical framework offers a path forward.
+By explicitly considering computational efficiency alongside accuracy and adopting hardware-agnostic metrics such as Floating-Point Operations, the AI research community can shift towards more sustainable practices.
+This transition is not merely technical but requires a fundamental reconsideration of research values and success metrics to integrate environmental impact as a core criterion.
+
+While technical innovation is essential, it alone cannot address AI’s environmental challenges.
+Regulatory efforts such as the EU AI Act are beginning to mandate energy efficiency for high-risk AI systems, and international bodies like the OECD are promoting harmonized governance approaches.
+Ethical concerns surrounding intergenerational justice and environmental equity highlight the need for diverse stakeholder engagement in shaping AI’s sustainable future.
+
+Ultimately, achieving sustainable AI requires coordinated action across technology, policy, and society.
+The AI research community must embrace environmental responsibility as a central value alongside performance, recognizing that progress in artificial intelligence should never come at the expense of planetary sustainability.
+
+
+
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+
+\end{document}
+
+% \section{AI as Environmental Solution (1.5 pages)}
+
+% % Key papers: Rolnick et al. (2022), Vinuesa et al. (2020), Cowls et al. (2021), Kaack et al. (2022)
+
+% \subsection{Climate Mitigation Applications}
+% \begin{itemize}
+%     \item Smart grids, renewable energy forecasting, and optimization
+%     \item Transportation efficiency and carbon capture optimization
+%     \item Precision agriculture and resource management
+% \end{itemize}
+
+% \subsection{Environmental Monitoring and Conservation}
+% \begin{itemize}
+%     \item Biodiversity monitoring and deforestation detection
+%     \item Air/water quality assessment and ecosystem protection
+%     % \item Net benefit analysis: weighing solutions against AI's own impact
+% \end{itemize}
